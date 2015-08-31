@@ -1,1 +1,1 @@
-fab hanseong pull restart
+fab -H nn pull restart

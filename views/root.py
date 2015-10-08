@@ -59,40 +59,35 @@ def index():
 def no():
     return render_template('no.html')
 
+
 @app.route('/lay')
 def lay():
     return render_template('layout.html')
 
 
-CITY_LOCATION = {'la': {'lat': '34.052235', 'lng': '-118.243683'},
-                 'hu': {'lat': '29.7604267', 'lng': '-95.3698028'},
-                 'pa': {'lat': '48.858093', 'lng': '2.294694'},
-                 'lo': {'lat': '51.508530', 'lng': '-0.076132'},
-                 'va': {'lat': '49.246292', 'lng': '-123.116226'},
-                 'ba': {'lat': '41.390205', 'lng': '2.154007'},
-                 'sy': {'lat': '-33.865143', 'lng': '151.209900'},
-                 }
-LA_HOUSES = [
-        ['Wine Riot', 34.1839292, -118.3375242, 4, 'http://image1.rent.com/imgr/b0c1da9100b23397411084effcf7669b/200-200'],
-        ['New World Mac', 34.057486, -118.2374418, 5, 'http://image1.rent.com/imgr/6a74d975eb14c273f8afde040c8a8d32/200-200'],
-        ['LA iPhone Repair', 34.1067475, -117.8571622, 3, 'http://image.rent.com/imgr/823978834bdbacd0aecc02c65b2663f4/200-200'],
-        ['Shakespeare Bridge', 34.0833848, -118.3468681, 2, 'http://image.rent.com/imgr/a84c1155e3d1b4a9224559202b898b86/200-200'],
-        ['Excalibur Movers', 34.1054515, -118.2785795, 1, 'http://image.rent.com/imgr/5781c6c6c99571f8f3ad6d0ceee38b3b/200-200']
-      ]
+def de(x):
+    return x.decode('utf8')
 
-@app.route('/map')
-def map():
-    k = request.args.get('k')
-    city = CITY_LOCATION.get(k)
-    lat, lng = (city['lat'], city['lng']) if city else (CITY_LOCATION['la']['lat'], CITY_LOCATION['la']['lng'])
-    if not k or k == 'la':
-        houses = LA_HOUSES
+
+BOOK_READ_LIST = [(de('제1과 취미'), [(de('1. 노벨 이야기'), 'http://ac-9dv47dhd.clouddn.com/2be466026cef44c2.pdf'), 
+                                     (de('2. 세계인의 취미'), 'http://ac-9dv47dhd.clouddn.com/3c7650998860ef6c.pdf'), 
+                                     (de('3. 수집광 가족'), 'http://ac-9dv47dhd.clouddn.com/c5460f1f2f980779.pdf'),
+                                    ]
+                  ),
+                  ]
+
+
+@app.route('/menu')
+def menu():
+    try:
+        bid = request.args.get('bid')
+    except Exception, e:
+        print '===========', e
+        return render_template('no.html')
+    if bid == 'read3':
+        return render_template('menu.html', data=BOOK_READ_LIST)
     else:
-        houses = "[]"
-    print '========', houses
-    return render_template('map.html', lat=lat, lng=lng, houses=houses)
-
-
+        return render_template('no.html')
 
 
 

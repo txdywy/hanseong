@@ -8,9 +8,13 @@
     <header>
         <div class="header-content" id="intro">
             <div class="header-content-inner">
-                <h1>努力建设中...</h1>
+                {% for d in data %}
+                <h1>{{ d[0] }}</h1>
                 <hr>
-                <a href="/" class="btn btn-primary btn-xl page-scroll">更多资讯</a>
+                    {% for t in d[1] %}
+                    <a href="{{ t[1] }}"><h3>{{ t[0] }}</h3></a>
+                    {% endfor %}
+                {% endfor %}    
             </div>
         </div>
     </header>

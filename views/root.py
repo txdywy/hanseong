@@ -69,23 +69,25 @@ def de(x):
     return x.decode('utf8')
 
 
-BOOK_READ_LIST = [(de('제1과 취미'), [(de('1. 노벨 이야기'), 'http://ac-9dv47dhd.clouddn.com/2be466026cef44c2.pdf'), 
+BOOK_READ_DICT = {3:[(de('제1과 취미'), [(de('1. 노벨 이야기'), 'http://ac-9dv47dhd.clouddn.com/2be466026cef44c2.pdf'), 
                                      (de('2. 세계인의 취미'), 'http://ac-9dv47dhd.clouddn.com/3c7650998860ef6c.pdf'), 
                                      (de('3. 수집광 가족'), 'http://ac-9dv47dhd.clouddn.com/c5460f1f2f980779.pdf'),
                                     ]
-                  ),
-                  ]
+                      ),
+                      ]
+                      }
 
 
 @app.route('/menu')
 def menu():
     try:
-        bid = request.args.get('bid')
+        bk = request.args.get('bk')
+        bid = int(request.args.get('bid'))
     except Exception, e:
         print '===========', e
         return render_template('no.html')
-    if bid == 'read3':
-        return render_template('menu.html', data=BOOK_READ_LIST)
+    if bk == 'read':
+        return render_template('menu.html', data=BOOK_READ_DICT[bid])
     else:
         return render_template('no.html')
 

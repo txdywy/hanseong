@@ -55,6 +55,15 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/no')
+def no():
+    return render_template('no.html')
+
+@app.route('/lay')
+def lay():
+    return render_template('layout.html')
+
+
 CITY_LOCATION = {'la': {'lat': '34.052235', 'lng': '-118.243683'},
                  'hu': {'lat': '29.7604267', 'lng': '-95.3698028'},
                  'pa': {'lat': '48.858093', 'lng': '2.294694'},

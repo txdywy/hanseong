@@ -374,8 +374,25 @@
         </div>
     </section>
 
+    <div id="page">
+     <div id="header"><h1>header</h1></div> 
+        <div id="body" >
+            <h1>content top -> when scrolling up the box should STOP here (at the line right above this text)</h1>
+            <div id="dialog" title="课程咨询">现在报名 <p>学习工具下载</p> </div>
+
+            <span style="position: absolute; bottom: 0; ">content bottom -> when scrolling down the box should STOP here (at the line right below this text)</span>
+
+        </div>
+        <div id="footer"><h1>footer</h1></div>
+        <div id="debug"></div>
+    </div>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+
+    <link href="https://code.jquery.com/ui/1.8.24/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+ 
+    <script src="https://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -389,14 +406,48 @@
     <script src="js/creative.js"></script>
     <!-- Script to Activate the Carousel -->
     <script>
-    $('#myCarousel').carousel({
-        interval: 3000 //changes the speed
-    })
+        $('#myCarousel').carousel({
+            interval: 3000 //changes the speed
+        })
     </script>
     <script>
-    $('#introCarousel').carousel({
-        interval: 3000 //changes the speed
-    })
+        $('#introCarousel').carousel({
+            interval: 3000 //changes the speed
+        })
+    </script>
+    <script type="text/javascript">
+        var $d;
+        $(document).ready(function(){
+            var $header = $("#header");
+            
+            var dlg_width = 150;
+            var dlg_height = 400;
+            var dlg_offset_x = 10;//$("#page").width() - dlg_width + 100;
+            var dlg_margin_top = $("#header").outerHeight(true); // includeMargins=true
+            var dlg_margin_bottom = $("#footer").outerHeight(true); // includeMargins=true
+            
+            $d = $('#dialog').dialog({
+                width: dlg_width,
+                height: dlg_height,
+                position: [dlg_offset_x, dlg_margin_top]
+            });
+
+            
+            $(window).bind('scroll', function(evt){
+                var scrollTop = $(window).scrollTop();
+                var bottom = $(document).height() - scrollTop;
+                    $d.dialog("option", {"position": [
+                        dlg_offset_x,
+                        ((dlg_margin_top - scrollTop > 0) ?
+                            dlg_margin_top - scrollTop :
+                                ((bottom - dlg_height > dlg_margin_bottom) ?
+                                    0 :
+                                    bottom - dlg_height - dlg_margin_bottom
+                                )
+                        )
+                    ]});
+            });
+        });
     </script>
 </body>
 

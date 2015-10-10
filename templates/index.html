@@ -422,7 +422,7 @@
             var dlg_width = 150;
             var dlg_height = 400;
             var dlg_offset_x = 10;//$("#page").width() - dlg_width + 100;
-            var dlg_margin_top = $("#header").outerHeight(true); // includeMargins=true
+            var dlg_margin_top = $("#header").outerHeight(true) + 30; // includeMargins=true
             var dlg_margin_bottom = $("#footer").outerHeight(true); // includeMargins=true
             
             $d = $('#dialog').dialog({
@@ -434,16 +434,17 @@
             
             $(window).bind('scroll', function(evt){
                 var scrollTop = $(window).scrollTop();
+                var dlg_offset_y = ((dlg_margin_top - scrollTop > 0) ?
+                                        dlg_margin_top - scrollTop :
+                                            ((bottom - dlg_height > dlg_margin_bottom) ?
+                                                0 :
+                                                bottom - dlg_height - dlg_margin_bottom
+                                            )
+                                    ) + 30;
                 var bottom = $(document).height() - scrollTop;
                     $d.dialog("option", {"position": [
                         dlg_offset_x,
-                        ((dlg_margin_top - scrollTop > 0) ?
-                            dlg_margin_top - scrollTop :
-                                ((bottom - dlg_height > dlg_margin_bottom) ?
-                                    0 :
-                                    bottom - dlg_height - dlg_margin_bottom
-                                )
-                        )
+                        dlg_offset_y
                     ]});
             });
         });

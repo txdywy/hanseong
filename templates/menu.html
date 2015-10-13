@@ -5,17 +5,17 @@
 {% endblock headjs %}
 {% block title %}建设中{% endblock %}
 {% block body %}
-    <header>
+    <div align="center" style="background-image:url('http://ac-xm5nwdhd.clouddn.com/8411916d6f2bae7c.jpg');opacity: 0.85;">
         <div class="header-content" id="intro">
             <div class="header-content-inner">
                 {% for d in data %}
-                <h1>{{ d[0] }}</h1>
-                <hr>
+                <h1><b>{{ d[0] }}</b></h1>
                     {% for t in d[1] %}
-                    <a href="{{ t[1] }}"><h3>{{ t[0] }}</h3></a>
+                    <a href="{{ t[1] }}"><h3><b>{{ t[0] }}</b></h3></a>
                     {% endfor %}
-                {% endfor %}    
+                <hr> 
+                {% endfor %}   
             </div>
         </div>
-    </header>
+    </div>
 {% endblock %}

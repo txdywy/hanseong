@@ -377,7 +377,12 @@
     <div id="page">
      <div id="header">_</div> 
         <div id="body" >
-            <div id="dialog" title="课程咨询">现在报名 <p>学习工具下载</p> </div>
+            <div id="dialog" title="课程咨询">
+                <p><b>现在报名</b></p>
+                <p>学习工具下载</p>
+                <a href="http://www.yy.com/s/download.html" class="btn btn-default btn-xl wow tada">YY下载链接</a>
+                <a href="http://rj.baidu.com/soft/detail/12612.html?ald" class="btn btn-default btn-xl wow tada">pdf下载链接</a>
+            </div>
 
             <span style="position: absolute; bottom: 0; ">content bottom -> when scrolling down the box should STOP here (at the line right below this text)</span>
 
@@ -419,7 +424,7 @@
         $(document).ready(function(){
             var $header = $("#header");
             
-            var dlg_width = 150;
+            var dlg_width = 180;
             var dlg_height = 400;
             var dlg_offset_x = 10;//$("#page").width() - dlg_width + 100;
             var dlg_margin_top = $("#header").outerHeight(true) + 30; // includeMargins=true

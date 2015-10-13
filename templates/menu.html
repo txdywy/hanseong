@@ -2,10 +2,15 @@
 {% block headjs %}
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/creative.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        background-image:url('http://ac-xm5nwdhd.clouddn.com/8411916d6f2bae7c.jpg');opacity: 0.85;
+      }
+    </style>
 {% endblock headjs %}
 {% block title %}建设中{% endblock %}
 {% block body %}
-    <div align="center" style="background-image:url('http://ac-xm5nwdhd.clouddn.com/8411916d6f2bae7c.jpg');opacity: 0.85;">
+    <div align="center">
         <div class="header-content" id="intro">
             <div class="header-content-inner">
                 {% for d in data %}

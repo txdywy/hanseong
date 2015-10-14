@@ -137,6 +137,11 @@ def menu():
         return render_template('no.html')
 
 
+@app.route('/pdf')
+def pdf():
+    return render_template('pdf.html')
+
+
 
 
 

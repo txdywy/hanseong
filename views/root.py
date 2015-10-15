@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from views import *
 from flask import (Blueprint, current_app, request, g, url_for, make_response,
-                   render_template, redirect, jsonify)
+                   render_template, redirect, jsonify, session)
 from models.model_test import TestUser, flush
+from models.model_han import *
 from wsgi import app
 from misc import qiniu_agent
 import simplejson as json

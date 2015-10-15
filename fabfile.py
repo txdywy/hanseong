@@ -27,6 +27,15 @@ def update_db():
     with cd('~/hanseong/'):
         run('openssl enc -des -d -a -in hanseong_db_enc -out hanseong.db')
 
+def db():
+    with cd('~/hanseong/'):
+        run('./db_dec')
+
+def init_db():
+    with cd('~/hanseong/'):
+        run("python -c 'from models.model_han import *;init_db()'")
+
+
 def init_db():
     with cd('~/hanseong/'):
         run("python -c 'from models.model_test import *;init_db()'")

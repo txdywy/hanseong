@@ -1,0 +1,1 @@
+openssl enc -des -d -a -in hanseong.enc -out hanseong.db
